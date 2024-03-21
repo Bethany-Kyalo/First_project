@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+
+</head>
+<body>
+    <style>
+        .user{
+            color:red;
+            font-size:15px;
+            margin-left :10px;
+            padding:5px;
+        }
+    </style>
+    {% if request.user.is_authenticated %}
+    <h4>Welcome <span class="user">{{user.username}}</span></h4>  
+    {% endif%}
+    <h1>Mombasa</h1>
+    <p>Enjoy   Sunny  beaches in  Mombasa </p>
+<span>For real</span>
+
+
+<div>
+    <form action="{% url 'submit' %}" method="POST" >
+
+        {%csrf_token %}
+      <label for="comment">Comment:</label><br>
+        <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% for  topic in topics %}
+
+<div>    This is my  comment {{topic.comment}}</div>
+{% endfor %}
+
+<div>  
+  
+    <a href="{% url 'contact'%}"> contact</a>  
+</div>
+    <div>    <a href="{% url 'about'% }"> about </a>
+    
+    </div>
+    <div>
+        <img src="{%static 'name.jpg' %}" alt="ture 1Pic">
+        <p>Bser moview</p>
+        <img src="{% static 'images/sand.jpg' %}" alt="sand.jpg">
+    </div>
+
+</body>
+</html>
