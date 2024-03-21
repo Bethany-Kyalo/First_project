@@ -7,3 +7,7 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.comment
+
+
+class Entertaiment(models.Model):
+    sport = models.CharField()
